@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Item } from './Models/Item';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+const TAX_PERCENTAGE: number = 0.05;
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -51,14 +53,22 @@ export class AppComponent {
 	}
 
 	getSubtotal(): number {
-		return 0;
+		let subtotal = 0;
+
+		this.items.forEach(item=>subtotal += item.price * item.quantity);
+
+		if (this.form.get('quantity').valid && this.form.get('price').valid) {
+			subtotal += this.form.get('quantity').value * this.form.get('price').value;
+		}
+
+		return subtotal;
 	}
 
 	getTaxes(): number {
-		return 0;
+		return this.getSubtotal() * TAX_PERCENTAGE;
 	}
 
 	getTotal(): number {
-		return 0;
+		return this.getSubtotal() + this.getTaxes();
 	}
 }
