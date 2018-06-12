@@ -14,15 +14,17 @@ export class AppComponent {
 			{
 				name: 'Widget',
 				quantity: 2,
-				price: 5,
-				modifyPrice: false
+				price: 5
 			},
 			{
 				name: 'Cog',
 				quantity: 2,
-				price: 15.994,
-				modifyPrice: false
+				price: 15.994
 			}
 		);
+	}
+
+	removeItem(index: number): void {
+		this.items.splice(index, 1);
 	}
 }

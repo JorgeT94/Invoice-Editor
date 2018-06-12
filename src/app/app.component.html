@@ -18,7 +18,7 @@
 					<td class="text-right">{{ item.price | currency:'MXN':'symbol-narrow' }}</td>
 					<td class="text-right">{{ item.quantity * item.price | currency:'MXN':'symbol-narrow' }}</td>
 					<td>
-						<button type="button" class="close" aria-label="Close">
+						<button type="button" class="close" aria-label="Close" (click)="removeItem(idx)">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</td>
