@@ -1,4 +1,5 @@
 <section class="container">
+	<form [formGroup]="form" (submit)="addItem()" novalidate>
 	<article class="table-responsive">
 		<table class="table table-sm">
 			<thead>
@@ -12,18 +13,40 @@
 			</thead>
 			<tbody>
 				<!-- Saved items... -->
-				<tr *ngFor="let item of items; let idx of index">
+				<tr *ngFor="let item of items; let idx = index">
 					<th>{{ item.name }}</th>
 					<td>{{ item.quantity }}</td>
 					<td class="text-right">{{ item.price | currency:'MXN':'symbol-narrow' }}</td>
 					<td class="text-right">{{ item.quantity * item.price | currency:'MXN':'symbol-narrow' }}</td>
 					<td>
-						<button type="button" class="close" aria-label="Close" (click)="removeItem(idx)">
+						<button type="button" class="close text-danger" aria-label="Close" (click)="removeItem(idx)">
 							<span aria-hidden="true">&times;</span>
+						</button>
+					</td>
+				</tr>
+				
+				<!-- New item... -->
+				<tr>
+					<td>
+						<input type="text" class="form-control" placeholder="New Item" formControlName="name">
+					</td>
+					<td>
+						<input type="text" class="form-control" formControlName="quantity">
+					</td>
+					<td>
+						<input type="text" class="form-control" formControlName="price">
+					</td>
+					<td class="text-right">
+						{{ this.form.get('quantity').valid && this.form.get('price').valid ? (form.get('quantity').value * form.get('price').value | currency:'MXN':'symbol-narrow') : 0 | currency:'MXN':'symbol-narrow' }}
+					</td>
+					<td>
+						<button type="button" class="close text-primary" aria-label="Close" (click)="addItem()">
+							<span aria-hidden="true">+</span>
 						</button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</article>
+	</form>
 </section>
