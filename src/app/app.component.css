@@ -1,1 +1,6 @@
 section { margin-top: 30px; }
+
+#totalsTable {
+	margin-top: 25px;
+	width: 30%;
+}

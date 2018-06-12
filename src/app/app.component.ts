@@ -49,4 +49,16 @@ export class AppComponent {
 			alert('This item cannot be added. Please make sure all the information is correct.');
 		}
 	}
+
+	getSubtotal(): number {
+		return 0;
+	}
+
+	getTaxes(): number {
+		return 0;
+	}
+
+	getTotal(): number {
+		return 0;
+	}
 }
